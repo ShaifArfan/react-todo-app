@@ -1,0 +1,72 @@
+@import '../_mixins.scss';
+
+.item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	background: var(--white);
+	margin-bottom: 1.5rem;
+	border-radius: 4px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+.todoDetails {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 1rem;
+	width: 100%;
+}
+.svgBox {
+	width: 25px;
+	height: 25px;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	cursor: pointer;
+	transition: 0.3s ease background-color;
+	&:hover {
+		background-color: var(--grey-2);
+	}
+	svg {
+		width: 100%;
+		height: 100%;
+		stroke: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+.todoText {
+	font-weight: 500;
+	font-size: 1.4rem;
+	color: var(--black-2);
+	&--completed {
+		text-decoration: line-through;
+	}
+}
+.todoActions {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+.icon {
+	font-size: 2rem;
+	padding: 0.5rem;
+	border-radius: 4px;
+	background-color: var(--gray-1);
+	color: var(--black-2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: 0.3s ease background-color;
+	&:hover {
+		background-color: var(--gray-2);
+	}
+}
