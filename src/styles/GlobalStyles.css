@@ -26,6 +26,9 @@ body {
 	min-height: 100vh;
 	background-color: var(--bg-1);
 }
+* {
+	font-family: 'Poppins', sans-serif;
+}
 .container {
 	width: 90%;
 	max-width: 1200px;

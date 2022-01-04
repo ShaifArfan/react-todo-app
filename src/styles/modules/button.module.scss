@@ -3,19 +3,20 @@
 	height: auto;
 	padding: 0.8rem 2rem;
 	border: none;
-	font-weight: 500;
 	border-radius: 6px;
-	font-size: 1.8rem;
+	font-weight: 500;
+	font-size: 1.6rem;
 	text-decoration: none;
 	text-transform: capitalize;
 	cursor: pointer;
-	letter-spacing: 1px;
 	overflow: hidden;
 	&__select {
+		color: var(--black-2);
+		font-family: Poppins;
 		padding: 1rem;
 		border: none;
 		background-color: var(--bg-3);
-		font-size: 1.6rem;
+
 		width: 150px;
 		cursor: pointer;
 	}

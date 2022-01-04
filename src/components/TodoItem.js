@@ -1,5 +1,6 @@
 import cogoToast from 'cogo-toast';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
@@ -44,7 +45,12 @@ function TodoItem({ todo }) {
 
   return (
     <>
-      <div className={styles.item}>
+      <div
+        className={styles.item}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, transition: { duration: 0.2 } }}
+      >
         <div className={styles.todoDetails}>
           <CheckButton checked={checked} handleCheck={handleUpdateStatus} />
           <div>
