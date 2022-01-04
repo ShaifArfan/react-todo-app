@@ -13,7 +13,6 @@ function AppHeader() {
 
   const handleAddTodo = () => {
     setModalOpen(true);
-    console.log('add todo');
   };
 
   const updateFilter = (e) => {

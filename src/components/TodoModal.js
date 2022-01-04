@@ -82,7 +82,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
   };
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence>
       {modalOpen && (
         <motion.div
           className={styles.wrapper}

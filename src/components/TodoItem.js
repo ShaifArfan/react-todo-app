@@ -10,6 +10,14 @@ import { getClasses } from '../utils/getClasses';
 import CheckButton from './CheckButton';
 import TodoModal from './TodoModal';
 
+const child = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 10,
+    opacity: 1,
+  },
+};
+
 function TodoItem({ todo }) {
   const [checked, setChecked] = useState(false);
   const time = format(new Date(todo.time), 'p, MM/dd/yyyy');
@@ -32,7 +40,6 @@ function TodoItem({ todo }) {
   };
 
   const handleDelete = () => {
-    console.log('deleting bro');
     dispatch(deleteTodo(todo.id));
     cogoToast.success('Todo Deleted Successfully', {
       position: 'bottom-right',
@@ -45,12 +52,7 @@ function TodoItem({ todo }) {
 
   return (
     <>
-      <div
-        className={styles.item}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0, transition: { duration: 0.2 } }}
-      >
+      <motion.div className={styles.item} variants={child}>
         <div className={styles.todoDetails}>
           <CheckButton checked={checked} handleCheck={handleUpdateStatus} />
           <div>
@@ -85,7 +87,7 @@ function TodoItem({ todo }) {
             <MdEdit />
           </div>
         </div>
-      </div>
+      </motion.div>
       <TodoModal
         type="update"
         modalOpen={updateModalOpen}

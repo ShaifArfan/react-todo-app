@@ -14,7 +14,6 @@ const container = {
     },
   },
 };
-
 const child = {
   hidden: { y: 20, opacity: 0 },
   visible: {
@@ -44,12 +43,12 @@ function AppContent() {
       initial="hidden"
       animate="visible"
     >
-      <AnimatePresence exitBeforeEnter initial>
+      <AnimatePresence>
         {filteredTodoList && filteredTodoList.length > 0 ? (
           filteredTodoList.map((todo) => (
-            <motion.div key={todo.id} variants={child}>
-              <TodoItem key={todo.id} todo={todo} />
-            </motion.div>
+            // <motion.div key={todo.id} variants={child}>
+            <TodoItem key={todo.id} todo={todo} />
+            // </motion.div>
           ))
         ) : (
           <motion.p variants={child} className={styles.emptyText}>
