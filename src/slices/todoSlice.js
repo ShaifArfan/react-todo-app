@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const getInitialTodo = () => {
   // getting todo list
@@ -11,14 +11,17 @@ const getInitialTodo = () => {
   return [];
 };
 
-const initialValue = getInitialTodo();
+const initialValue = {
+  filterStatus: 'all',
+  todoList: getInitialTodo(),
+};
 
 export const todoSlice = createSlice({
   name: 'todo',
   initialState: initialValue,
   reducers: {
     addTodo: (state, action) => {
-      state.push(action.payload);
+      state.todoList.push(action.payload);
       const todoList = window.localStorage.getItem('todoList');
       if (todoList) {
         const todoListArr = JSON.parse(todoList);
@@ -37,8 +40,39 @@ export const todoSlice = createSlice({
         );
       }
     },
+    updateTodo: (state, action) => {
+      const todoList = window.localStorage.getItem('todoList');
+      if (todoList) {
+        const todoListArr = JSON.parse(todoList);
+        todoListArr.forEach((todo) => {
+          if (todo.id === action.payload.id) {
+            todo.status = action.payload.status;
+            todo.title = action.payload.title;
+          }
+        });
+        window.localStorage.setItem('todoList', JSON.stringify(todoListArr));
+        state.todoList = [...todoListArr];
+      }
+    },
+    deleteTodo: (state, action) => {
+      const todoList = window.localStorage.getItem('todoList');
+      if (todoList) {
+        const todoListArr = JSON.parse(todoList);
+        todoListArr.forEach((todo, index) => {
+          if (todo.id === action.payload) {
+            todoListArr.splice(index, 1);
+          }
+        });
+        window.localStorage.setItem('todoList', JSON.stringify(todoListArr));
+        state.todoList = todoListArr;
+      }
+    },
+    updateFilterStatus: (state, action) => {
+      state.filterStatus = action.payload;
+    },
   },
 });
 
-export const { addTodo } = todoSlice.actions;
+export const { addTodo, updateTodo, deleteTodo, updateFilterStatus } =
+  todoSlice.actions;
 export default todoSlice.reducer;

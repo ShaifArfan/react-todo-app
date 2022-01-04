@@ -22,4 +22,18 @@ function Button({ type, variant = 'primary', children, ...rest }) {
   );
 }
 
+function SelectButton({ children, id, ...rest }) {
+  return (
+    <select
+      id="id"
+      type="button"
+      className={getClasses([styles.button, styles.button__select])}
+      {...rest}
+    >
+      {children}
+    </select>
+  );
+}
+
+export { SelectButton };
 export default Button;

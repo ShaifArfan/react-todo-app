@@ -49,6 +49,13 @@
 		text-decoration: line-through;
 	}
 }
+.time {
+	display: block;
+	font-size: 1.2rem;
+	font-weight: 300;
+	margin-top: -0.2rem;
+	color: var(--black-2);
+}
 .todoActions {
 	display: flex;
 	align-items: center;

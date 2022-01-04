@@ -1,36 +1,58 @@
 import cogoToast from 'cogo-toast';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../slices/todoSlice';
+import { addTodo, updateTodo } from '../slices/todoSlice';
 import styles from '../styles/modules/modal.module.scss';
 import Button from './Button';
 
-function TodoModal({ type, modalOpen, setModalOpen }) {
+function TodoModal({ type, modalOpen, setModalOpen, todo }) {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState('');
-  const [status, setStatus] = useState('incomplete');
+  const [title, setTitle] = useState(todo?.title || '');
+  const [status, setStatus] = useState(todo?.status || 'incomplete');
+
+  useEffect(() => {
+    if (type === 'update' && todo) {
+      setTitle(todo.title);
+      setStatus(todo.status);
+    }
+  }, [type, todo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title === '') {
       cogoToast.error('Please enter a title', { position: 'bottom-right' });
-      // return;
+      return;
     }
     if (title && status) {
-      dispatch(
-        addTodo({
-          title,
-          status,
-          time: new Date().toLocaleString(),
-        })
-      );
-      setTitle('');
-      setStatus('incomplete');
+      if (type === 'add') {
+        dispatch(
+          addTodo({
+            id: uuid(),
+            title,
+            status,
+            time: new Date().toLocaleString(),
+          })
+        );
+        cogoToast.success('Task added successfully', {
+          position: 'bottom-right',
+        });
+      }
+      if (type === 'update') {
+        if (todo.title !== title || todo.status !== status) {
+          dispatch(updateTodo({ ...todo, title, status }));
+          cogoToast.success('Task Updated successfully', {
+            position: 'bottom-right',
+          });
+        } else {
+          cogoToast.success('No changes made', {
+            position: 'bottom-right',
+          });
+          return;
+        }
+      }
       setModalOpen(false);
-      cogoToast.success('Task added successfully', {
-        position: 'bottom-right',
-      });
     }
   };
 
@@ -51,6 +73,7 @@ function TodoModal({ type, modalOpen, setModalOpen }) {
         </div>
 
         <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+          <h1>{type === 'add' ? 'Add' : 'Update'} TODO</h1>
           <label htmlFor="title">
             Title
             <input
@@ -72,7 +95,7 @@ function TodoModal({ type, modalOpen, setModalOpen }) {
             </select>
           </label>
           <Button type="submit" variant="primary">
-            Add Task
+            {type === 'add' ? 'Add Task' : 'Update Task'}
           </Button>
         </form>
       </div>
