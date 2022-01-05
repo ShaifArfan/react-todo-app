@@ -8,16 +8,19 @@
 	background: var(--white);
 	margin-bottom: 1.5rem;
 	border-radius: 4px;
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 .todoDetails {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	gap: 1rem;
-	width: 100%;
 }
 .svgBox {
-	width: 25px;
+	flex-basis: 25px;
+	flex-shrink: 0;
 	height: 25px;
 	border-radius: 2px;
 	display: flex;
@@ -38,10 +41,17 @@
 		justify-content: center;
 	}
 }
+.texts {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
 .todoText {
+	word-break: break-all;
 	font-weight: 500;
 	font-size: 1.4rem;
 	color: var(--black-2);
+
 	&--completed {
 		text-decoration: line-through;
 		opacity: 0.7;

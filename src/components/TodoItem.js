@@ -13,7 +13,7 @@ import TodoModal from './TodoModal';
 const child = {
   hidden: { y: 20, opacity: 0 },
   visible: {
-    y: 10,
+    y: 0,
     opacity: 1,
   },
 };
@@ -55,7 +55,7 @@ function TodoItem({ todo }) {
       <motion.div className={styles.item} variants={child}>
         <div className={styles.todoDetails}>
           <CheckButton checked={checked} handleCheck={handleUpdateStatus} />
-          <div>
+          <div className={styles.texts}>
             <p
               className={getClasses([
                 styles.todoText,
