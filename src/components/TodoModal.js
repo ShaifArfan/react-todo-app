@@ -135,9 +135,14 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
                   <option value="complete">Completed</option>
                 </select>
               </label>
-              <Button type="submit" variant="primary">
-                {type === 'add' ? 'Add Task' : 'Update Task'}
-              </Button>
+              <div className={styles.buttonContainer}>
+                <Button type="submit" variant="primary">
+                  {type === 'add' ? 'Add Task' : 'Update Task'}
+                </Button>
+                <Button variant="secondary" onClick={() => setModalOpen(false)}>
+                  Cancel
+                </Button>
+              </div>
             </form>
           </motion.div>
         </motion.div>
