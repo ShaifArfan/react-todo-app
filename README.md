@@ -8,7 +8,7 @@ Made with ❤️ by [Shaif Arfan](http://instagram.com/shaifarfan08/)
 
 **live demo: [https://wc-react-todo-app.netlify.app/](https://wc-react-todo-app.netlify.app/)**
 
-**Watch On Youtube: [https://www.youtube.com/webcifarOfficial](https://www.youtube.com/webcifarOfficial)**
+**Watch On Youtube: [Coming Soon](https://www.youtube.com/webcifarOfficial)**
 
 ---
 
