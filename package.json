@@ -5,12 +5,12 @@
 	"dependencies": {
 		"@fontsource/poppins": "^4.5.0",
 		"@reduxjs/toolkit": "^1.7.1",
-		"cogo-toast": "^4.2.3",
 		"date-fns": "^2.28.0",
 		"framer-motion": "^5.5.1",
 		"node-sass": "^7.0.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"react-hot-toast": "^2.2.0",
 		"react-icons": "^4.3.1",
 		"react-redux": "^7.2.6",
 		"react-scripts": "5.0.0",

@@ -1,6 +1,6 @@
-import cogoToast from 'cogo-toast';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 import React, { useEffect, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
@@ -41,9 +41,7 @@ function TodoItem({ todo }) {
 
   const handleDelete = () => {
     dispatch(deleteTodo(todo.id));
-    cogoToast.success('Todo Deleted Successfully', {
-      position: 'bottom-right',
-    });
+    toast.success('Todo Deleted Successfully');
   };
 
   const handleUpdate = () => {

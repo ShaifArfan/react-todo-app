@@ -22,7 +22,7 @@ In the project, we will be creating a Complete Todo Application with all feature
 - [React Redux](https://redux.js.org/)
 - [Framer Motion](https://framer.com/motion/)
 - [React icons](https://react-icons.netlify.com/)
-- [CogoToast](https://cogito.systems/cogito-toast/)
+- [React Hot Toast](https://react-hot-toast.com/)
 - More...
 
 ## Requirements
