@@ -11,10 +11,6 @@ function AppHeader() {
   const [filterStatus, setFilterStatus] = useState(initialFilterStatus);
   const dispatch = useDispatch();
 
-  const handleAddTodo = () => {
-    setModalOpen(true);
-  };
-
   const updateFilter = (e) => {
     setFilterStatus(e.target.value);
     dispatch(updateFilterStatus(e.target.value));
@@ -22,7 +18,7 @@ function AppHeader() {
 
   return (
     <div className={styles.appHeader}>
-      <Button variant="primary" onClick={() => handleAddTodo()}>
+      <Button variant="primary" onClick={() => setModalOpen(true)}>
         Add Task
       </Button>
       <SelectButton
