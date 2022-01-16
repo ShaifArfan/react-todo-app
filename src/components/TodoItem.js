@@ -19,9 +19,8 @@ const child = {
 };
 
 function TodoItem({ todo }) {
-  const [checked, setChecked] = useState(false);
-  const time = format(new Date(todo.time), 'p, MM/dd/yyyy');
   const dispatch = useDispatch();
+  const [checked, setChecked] = useState(false);
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ function TodoItem({ todo }) {
     }
   }, [todo.status]);
 
-  const handleUpdateStatus = () => {
+  const handleCheck = () => {
     setChecked(!checked);
     dispatch(
       updateTodo({ ...todo, status: checked ? 'incomplete' : 'complete' })
@@ -52,17 +51,19 @@ function TodoItem({ todo }) {
     <>
       <motion.div className={styles.item} variants={child}>
         <div className={styles.todoDetails}>
-          <CheckButton checked={checked} handleCheck={handleUpdateStatus} />
+          <CheckButton checked={checked} handleCheck={handleCheck} />
           <div className={styles.texts}>
             <p
               className={getClasses([
                 styles.todoText,
-                checked && styles['todoText--completed'],
+                todo.status === 'complete' && styles['todoText--completed'],
               ])}
             >
               {todo.title}
             </p>
-            <p className={styles.time}>{time}</p>
+            <p className={styles.time}>
+              {format(new Date(todo.time), 'p, MM/dd/yyyy')}
+            </p>
           </div>
         </div>
         <div className={styles.todoActions}>
