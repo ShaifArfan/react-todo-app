@@ -8,7 +8,7 @@ Made with ❤️ by [Shaif Arfan](http://instagram.com/shaifarfan08/)
 
 **live demo: [https://wc-react-todo-app.netlify.app/](https://wc-react-todo-app.netlify.app/)**
 
-**Watch On Youtube: [Coming Soon](https://www.youtube.com/webcifarOfficial)**
+**Watch On Youtube: [https://youtu.be/W0Uf_xu350k](https://youtu.be/W0Uf_xu350k)**
 
 ---
 
@@ -70,11 +70,11 @@ Here are some Similar projects that you might be interested.
 
 ### Q: How can i get started?
 
-You can get started by following the `YouTube tutorial` of this project. Here is the full tutorial video link: [coming soon].
+You can get started by following the [YouTube tutorial](https://youtu.be/W0Uf_xu350k) of this project. Here is the full tutorial video link: [coming soon].
 
 ### Q: What i need to start the project?
 
-Just open your favorite code editor and follow along with the `YouTube Tutorial`.
+Just open your favorite code editor and follow along with the [YouTube tutorial](https://youtu.be/W0Uf_xu350k).
 
 ### Q: Who the project is for?
 
