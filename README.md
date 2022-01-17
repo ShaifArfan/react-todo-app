@@ -36,7 +36,7 @@ You can find all the starter files in `starter-files` branch. You can to go to t
 
 ## Getting Started
 
-The recommended way to get started with the project is Follow the `YouTube tutorial`. You will find all the step-by-step guides. Or you Can start the project on your own by following the guide below.
+The recommended way to get started with the project is Follow the [YouTube tutorial](https://youtu.be/W0Uf_xu350k). You will find all the step-by-step guides. Or you Can start the project on your own by following the guide below.
 
 After getting the starter files, you need to go the file directory and run
 
