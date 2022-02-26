@@ -4,11 +4,17 @@
 
 A complete todo application with all features.
 
-Made with ❤️ by [Shaif Arfan](http://instagram.com/shaifarfan08/)
-
 **live demo: [https://wc-react-todo-app.netlify.app/](https://wc-react-todo-app.netlify.app/)**
 
 **Watch On Youtube: [https://youtu.be/W0Uf_xu350k](https://youtu.be/W0Uf_xu350k)**
+
+---
+
+### Made with ❤️ by [Shaif Arfan](https://www.instagram.com/shaifarfan08/)
+
+Like my works and want to support me?
+
+<a href="https://www.buymeacoffee.com/shaifarfan08" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 45px !important;width: 162.75px !important;" ></a>
 
 ---
 
@@ -55,14 +61,9 @@ npm start
 1. Favicon: [Flaticon.com](https://www.flaticon.com/)
 1. Code Editor: [VS Code](https://code.visualstudio.com/)
 
-## Similar Projects
+## Other projects
 
-Here are some Similar projects that you might be interested.
-
-- [Artistic - React JS Project](https://github.com/ShaifArfan/artistic)
-- [Ayan's Portfolio - React JS Project](https://github.com/ShaifArfan/AYANs-portfolio)
-- [Shaif's Cuisine - HTML, CSS project](https://github.com/ShaifArfan/shaif-s-cuisine)
-- [Amy's Portfolio - HTML, CSS Project](https://github.com/ShaifArfan/AMYs-Portfolio)
+📚 [All Web Cifar Project Tutorials](https://github.com/ShaifArfan/wc-project-tutorials)
 
 ---
 
