@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
+import { PageTitle } from "./components/PageTitle";
 
-function App() {
-  return (
-    <div className="container">
-      <h1>Hello World</h1>
-    </div>
-  );
-}
-
-export default App;
+export const App = () => {
+    return (
+        <div className="container">
+            <PageTitle>TODO LIST</PageTitle>
+        </div>
+    );
+};
