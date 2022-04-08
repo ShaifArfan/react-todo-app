@@ -1,10 +1,12 @@
-import React from "react";
-import { PageTitle } from "./components/PageTitle";
+import React, { Provider } from "react";
+
+import "./App.css";
+import { TodosContainer } from "./containers/TodosContainer";
 
 export const App = () => {
     return (
-        <div className="container">
-            <PageTitle>TODO LIST</PageTitle>
+        <div className="App">
+            <TodosContainer />
         </div>
     );
 };
