@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { v4 } from "uuid";
+import { TodoItem } from "./TodoItem";
 
 export const Todos = (props) => {
     const [todo, setTodo] = useState("");
@@ -16,13 +17,12 @@ export const Todos = (props) => {
             completed: false,
         });
     };
-    console.log("props: ", props);
+    // console.log("props: ", props);
 
     return (
         <div className="addTodos">
             <input
                 type="text"
-                // value={todo}
                 onChange={(e) => handleChange(e)}
                 className="todo-input"
             />
@@ -37,57 +37,12 @@ export const Todos = (props) => {
                             key={todo.id}
                             {...todo}
                             removeTodo={props.removeTodo}
-                            updateTodo={props.updateTodos}
+                            updateTodo={props.updateTodo}
+                            completeTodo={props.completeTodo}
                         />
                     );
-                    {
-                        /* return <li key={todo.id}>{todo.item}</li>; */
-                    }
                 })}
             </ul>
         </div>
-    );
-};
-
-const TodoItem = ({ id, item, completed, removeTodo, updateTodo }) => {
-    const inputRef = useRef(true);
-
-    const changeFocus = () => {
-        inputRef.current.disabled = false;
-        inputRef.current.focus();
-    };
-
-    const handleRemoveClick = (id) => {
-        if (typeof removeTodo === "function") {
-            removeTodo(id);
-        }
-    };
-
-    const update = (id, value, e) => {
-        if (typeof updateTodo === "function") {
-            console.log(e.which);
-            // 13 - key code for enter
-            if (e.which === 13) {
-                updateTodo({
-                    id,
-                    item: value,
-                });
-
-                inputRef.current.disabled = true;
-            }
-        }
-    };
-
-    return (
-        <li>
-            <textarea
-                ref={inputRef}
-                disabled={inputRef}
-                defaultValue={item}
-                onKeyPress={(e) => update(id, inputRef.current.value, e)}
-            />
-            <button onClick={() => handleRemoveClick(id)}>Remove</button>
-            <button onClick={changeFocus}>Edit</button>
-        </li>
     );
 };

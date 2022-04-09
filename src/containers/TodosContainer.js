@@ -1,15 +1,23 @@
 import { connect } from "react-redux";
 import { Todos } from "../components/Todos";
-import { addTodos, removeTodos, updateTodos } from "../redux/reducer";
+import {
+    addTodos,
+    removeTodos,
+    updateTodos,
+    completeTodos,
+} from "../redux/reducer";
+import { getTodos } from "../redux/selector";
 
 const mapState = (state) => ({
-    todos: state,
+    // todos: state,
+    todos: getTodos(state),
 });
 
 const mapDispatch = (dispatch) => ({
-    addTodo: (todo) => dispatch(addTodos(todo)),
+    addTodo: (obj) => dispatch(addTodos(obj)),
     removeTodo: (id) => dispatch(removeTodos(id)),
-    updateTodo: (item) => dispatch(updateTodos(item)),
+    updateTodo: (obj) => dispatch(updateTodos(obj)),
+    completeTodo: (id) => dispatch(completeTodos(id)),
 });
 
 export const TodosContainer = connect(mapState, mapDispatch)(Todos);

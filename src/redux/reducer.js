@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = [
+    // {
+    //     id: 0,
+    //     item: "",
+    //     completed: false,
+    // },
+];
 
 const addTodoReducer = createSlice({
     name: "todos",
@@ -18,9 +24,18 @@ const addTodoReducer = createSlice({
                 if (todo.id === action.payload.id) {
                     return {
                         ...todo,
-                        // id: action.payload.id,
                         item: action.payload.item,
-                        // completed: true,
+                    };
+                }
+                return todo;
+            });
+        },
+        completeTodos: (state, action) => {
+            return state.map((todo) => {
+                if (todo.id === action.payload) {
+                    return {
+                        ...todo,
+                        completed: true,
                     };
                 }
                 return todo;
@@ -29,5 +44,6 @@ const addTodoReducer = createSlice({
     },
 });
 
-export const { addTodos, removeTodos, updateTodos } = addTodoReducer.actions;
+export const { addTodos, removeTodos, updateTodos, completeTodos } =
+    addTodoReducer.actions;
 export const reducer = addTodoReducer.reducer;
