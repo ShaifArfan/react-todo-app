@@ -65,11 +65,11 @@ body {
   margin-left: 1rem;
   background-color: #271c6c;
   color: #e1ebfd;
-  border-radius: 50%;
-  border: 2px solid #e1ebfd;
+  border-radius: 40%;
+  border: 1px solid #e1ebfd;
   font-size: 1.5rem;
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 3.4rem;
+  height: 3.4rem;
   cursor: pointer;
   box-shadow: 2px 4px 10px #271c6c;
 

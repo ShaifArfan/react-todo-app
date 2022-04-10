@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { v4 } from "uuid";
-import { TodoItem } from "./TodoItem";
 
 export const Todos = (props) => {
     const [todo, setTodo] = useState("");
@@ -10,12 +9,15 @@ export const Todos = (props) => {
         setTodo(e.target.value);
     };
 
-    const handleAddClick = () => {
-        return props.addTodo({
+    const handleAddClick = (e) => {
+        const todoObj = {
             id: v4(),
             item: todo,
             completed: false,
-        });
+        };
+        e.target.value = "lalalal";
+        console.log(e.target.value);
+        return props.addTodo(todoObj);
     };
     // console.log("props: ", props);
 
@@ -23,26 +25,13 @@ export const Todos = (props) => {
         <div className="addTodos">
             <input
                 type="text"
-                onChange={(e) => handleChange(e)}
+                name="inputTodo"
                 className="todo-input"
+                onChange={(e) => handleChange(e)}
             />
-            <button className="add-btn" onClick={() => handleAddClick()}>
+            <button className="add-btn" onClick={(e) => handleAddClick(e)}>
                 Add
             </button>
-            <br />
-            <ul>
-                {props.todos.map((todo) => {
-                    return (
-                        <TodoItem
-                            key={todo.id}
-                            {...todo}
-                            removeTodo={props.removeTodo}
-                            updateTodo={props.updateTodo}
-                            completeTodo={props.completeTodo}
-                        />
-                    );
-                })}
-            </ul>
         </div>
     );
 };

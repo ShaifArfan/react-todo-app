@@ -9,7 +9,6 @@ import {
 import { getTodos } from "../redux/selector";
 
 const mapState = (state) => ({
-    // todos: state,
     todos: getTodos(state),
 });
 

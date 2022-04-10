@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 export const TodoItem = ({
     id,
     item,
+    completed,
     removeTodo,
     updateTodo,
     completeTodo,
@@ -49,20 +50,27 @@ export const TodoItem = ({
 
     let whichButton;
     if (button) {
-        whichButton = <button onClick={changeFocus}>edit</button>;
+        whichButton = <button onClick={changeFocus}>Edit</button>;
     } else {
         whichButton = (
             <button onClick={() => save(id, inputRef.current.value)}>
-                save
+                Save
             </button>
         );
     }
     return (
-        <li>
+        <li className="card">
             <textarea ref={inputRef} disabled={inputRef} defaultValue={item} />
-            {whichButton}
-            <button onClick={() => handleCompleteClick(id)}>Completed</button>
-            <button onClick={() => handleRemoveClick(id)}>Remove</button>
+            <div className="btns">
+                {whichButton}
+                {completed === false ? (
+                    <button onClick={() => handleCompleteClick(id)}>
+                        Completed
+                    </button>
+                ) : null}
+                <button onClick={() => handleRemoveClick(id)}>Remove</button>
+            </div>
+            {completed && <span className="completed">Done</span>}
         </li>
     );
 };
