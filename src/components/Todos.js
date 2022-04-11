@@ -15,6 +15,7 @@ export const Todos = (props) => {
             item: todo,
             completed: false,
         };
+        // TODO: clear input window
         e.target.value = "lalalal";
         console.log(e.target.value);
         return props.addTodo(todoObj);
