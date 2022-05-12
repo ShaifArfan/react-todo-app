@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Provider } from "react";
 
-function App() {
-  return (
-    <div className="container">
-      <h1>Hello World</h1>
-    </div>
-  );
-}
+// import "./App.css";
+import "./css/main.css";
+import { DisplayTodosContainer } from "./containers/DisplayTodosContainer";
+import { TodosContainer } from "./containers/TodosContainer";
 
-export default App;
+export const App = () => {
+    return (
+        <div className="App">
+            <h1>ToDo App</h1>
+            <TodosContainer />
+            <DisplayTodosContainer />
+        </div>
+    );
+};
