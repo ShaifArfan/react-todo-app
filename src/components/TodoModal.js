@@ -4,6 +4,7 @@ import { MdOutlineClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import toast from 'react-hot-toast';
+import { format } from 'date-fns';
 import { addTodo, updateTodo } from '../slices/todoSlice';
 import styles from '../styles/modules/modal.module.scss';
 import Button from './Button';
@@ -57,7 +58,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
             id: uuid(),
             title,
             status,
-            time: new Date().toLocaleString(),
+            time: format(new Date(), 'p, MM/dd/yyyy'),
           })
         );
         toast.success('Task added successfully');
