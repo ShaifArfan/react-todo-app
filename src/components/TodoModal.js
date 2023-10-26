@@ -34,6 +34,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('incomplete');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     if (type === 'update' && todo) {
@@ -60,7 +61,8 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
             status,
             time: format(new Date(), 'p, MM/dd/yyyy'),
           })
-        );
+        ); 
+        setIsSubmitted(true);
         toast.success('Task added successfully');
       }
       if (type === 'update') {
@@ -131,7 +133,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
                 </select>
               </label>
               <div className={styles.buttonContainer}>
-                <Button type="submit" variant="primary">
+                <Button type="submit" variant="primary" disabled={!isSubmitted}>
                   {type === 'add' ? 'Add Task' : 'Update Task'}
                 </Button>
                 <Button variant="secondary" onClick={() => setModalOpen(false)}>
