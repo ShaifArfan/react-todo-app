@@ -10,21 +10,24 @@
 	text-transform: capitalize;
 	cursor: pointer;
 	overflow: hidden;
+	
 	&__select {
 		color: var(--black-2);
 		font-family: Poppins;
 		padding: 1rem;
 		border: none;
 		background-color: var(--bg-3);
-
+		
 		width: 150px;
 		cursor: pointer;
 	}
 }
+
 .button--primary {
 	background-color: var(--primaryPurple);
 	color: var(--white);
 }
+
 .button--secondary {
 	background-color: var(--bg-3);
 	color: var(--black-1);

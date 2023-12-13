@@ -10,6 +10,7 @@
 	justify-content: center;
 	align-items: center;
 }
+
 .container {
 	background-color: var(--bg-2);
 	max-width: 500px;
@@ -22,6 +23,7 @@
 	border-radius: 8px;
 	position: relative;
 }
+
 .closeButton {
 	position: absolute;
 	top: -10px;
@@ -38,11 +40,13 @@
 	cursor: pointer;
 	transition: 0.3s ease all;
 	z-index: -1;
+	
 	&:hover {
 		background-color: #e32525;
 		color: white;
 	}
 }
+
 .formTitle {
 	color: var(--black-1);
 	font-size: 2rem;
@@ -50,11 +54,14 @@
 	margin-bottom: 2rem;
 	text-transform: capitalize;
 }
+
 .form {
 	width: 100%;
+	
 	label {
 		font-size: 1.6rem;
 		color: var(--black-1);
+		
 		input,
 		select {
 			margin-top: 0.5rem;
@@ -67,6 +74,7 @@
 		}
 	}
 }
+
 .buttonContainer {
 	display: flex;
 	justify-content: flex-start;
