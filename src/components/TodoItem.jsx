@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { deleteTodo, updateTodo } from "slices/todoSlice";
+import { deleteTodo, updateTodo } from "redux/todoSlice.js";
 import styles from "styles/modules/todoItem.module.scss";
 import { getClasses } from "utils/getClasses";
 import { CheckButton } from "components/CheckButton.jsx";
