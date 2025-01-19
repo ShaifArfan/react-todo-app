@@ -1,0 +1,48 @@
+{
+	"compilerOptions": {
+		
+		/* Path */
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		
+		/* Typescript */
+		"target": "ES2022",
+		"useDefineForClassFields": true,
+		"lib": [ "ES2022", "dom", "dom.iterable" ],
+		"module": "esnext",
+		"skipLibCheck": true,
+		
+		/* Typescript bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "react-jsx",
+		
+		/* Typescript linting */
+		"strict": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		
+		/* Mix Javascript/Typescript */
+		"allowJs": true,
+		"checkJs": false,
+		
+		/* Suppress errors */
+		"noImplicitAny": false,
+		"noUnusedLocals": false,
+		
+		/* More from tsconfig.node.json */
+		"composite": true,
+		"allowSyntheticDefaultImports": true,
+		
+	},
+	
+	/* Path */
+	"include": ["./src"],
+	"exclude": ["node_modules", "dist"],
+	
+}

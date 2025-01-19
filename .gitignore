@@ -1,23 +1,70 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# universal ignore for node (be/fe)
+/**/node_modules
+/**/build
+/**/dist
+/**/dist-ssr
+/**/package-lock.json
+/**/.vscode
+/**/.idea
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+/**/vite.config.js
+/**/vite.config.d.ts
+/**/logs
+/**/*.log
+/**/npm-debug.log*
+/**/yarn-debug.log*
+/**/yarn-error.log*
+/**/pnpm-debug.log*
+/**/lerna-debug.log*
+/**/*.local
+/**/.DS_Store
+/**/*.suo
+/**/*.ntvs*
+/**/*.njsproj
+/**/*.sln
+/**/*.sw?
+/**/tsconfig.node.tsbuildinfo
+/**/.pnpm-debug.log*
+/**/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+/**/pids
+/**/*.pid
+/**/*.seed
+/**/*.pid.lock
+/**/lib-cov
+/**/coverage
+/**/*.lcov
+/**/.nyc_output
+/**/.grunt
+/**/bower_components
+/**/.lock-wscript
+/**/jspm_packages
+/**/web_modules
+/**/*.tsbuildinfo
+/**/.npm
+/**/.eslintcache
+/**/.stylelintcache
+/**/.rpt2_cache
+/**/.rts2_cache_cjs
+/**/.rts2_cache_es
+/**/.rts2_cache_umd
+/**/.node_repl_history
+/**/.yarn-integrity
+/**/.cache
+/**/.parcel-cache
+/**/.next
+/**/out
+/**/.nuxt
+/**/.vuepress/dist
+/**/.temp
+/**/.docusaurus
+/**/.serverless
+/**/.fusebox
+/**/.dynamodb
+/**/.tern-port
+/**/.vscode-test
+/**/.yarn/cache
+/**/.yarn/unplugged
+/**/.yarn/build-state.yml
+/**/.yarn/install-state.gz
+/**/.pnp.*
 
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*

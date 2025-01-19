@@ -4,11 +4,11 @@ import toast from 'react-hot-toast';
 import React, { useEffect, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { deleteTodo, updateTodo } from '../slices/todoSlice';
-import styles from '../styles/modules/todoItem.module.scss';
+import { deleteTodo, updateTodo } from '@/store/todoSlice.js';
+import styles from '@/styles/modules/todoItem.module.scss';
 import { getClasses } from '../utils/getClasses';
-import CheckButton from './CheckButton';
-import TodoModal from './TodoModal';
+import CheckButton from '@/components/CheckButton.jsx';
+import TodoModal from '@/components/TodoModal.jsx';
 
 const child = {
   hidden: { y: 20, opacity: 0 },
