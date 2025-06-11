@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns';
-import { addTodo, updateTodo } from '../slices/todoSlice';
+import { addTodo, updateTodo, deleteAllTodos } from '../slices/todoSlice';
 import styles from '../styles/modules/modal.module.scss';
 import Button from './Button';
 
@@ -39,6 +39,8 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
     if (type === 'update' && todo) {
       setTitle(todo.title);
       setStatus(todo.status);
+    } else if (type === 'delete_all') {
+      console.log('hello');
     } else {
       setTitle('');
       setStatus('incomplete');
@@ -76,6 +78,20 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
     }
   };
 
+  let actionLabel;
+  if (type === 'delete_all') {
+    actionLabel = 'Delete All TODOS';
+  } else if (type === 'add') {
+    actionLabel = 'Add TODO';
+  } else {
+    actionLabel = 'Update TODO';
+  }
+
+  const onDeleteClick = () => {
+    dispatch(deleteAllTodos());
+    setModalOpen(false);
+  };
+
   return (
     <AnimatePresence>
       {modalOpen && (
@@ -106,39 +122,61 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
               <MdOutlineClose />
             </motion.div>
 
-            <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-              <h1 className={styles.formTitle}>
-                {type === 'add' ? 'Add' : 'Update'} TODO
-              </h1>
-              <label htmlFor="title">
-                Title
-                <input
-                  type="text"
-                  id="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </label>
-              <label htmlFor="type">
-                Status
-                <select
-                  id="type"
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
-                >
-                  <option value="incomplete">Incomplete</option>
-                  <option value="complete">Completed</option>
-                </select>
-              </label>
-              <div className={styles.buttonContainer}>
-                <Button type="submit" variant="primary">
-                  {type === 'add' ? 'Add Task' : 'Update Task'}
-                </Button>
-                <Button variant="secondary" onClick={() => setModalOpen(false)}>
-                  Cancel
-                </Button>
+            {type !== 'delete_all' ? (
+              <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+                <h1 className={styles.formTitle}>{actionLabel}</h1>
+                <label htmlFor="title">
+                  Title
+                  <input
+                    type="text"
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </label>
+                <label htmlFor="type">
+                  Status
+                  <select
+                    id="type"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="incomplete">Incomplete</option>
+                    <option value="complete">Completed</option>
+                  </select>
+                </label>
+                <div className={styles.buttonContainer}>
+                  <Button type="submit" variant="primary">
+                    {type === 'add' ? 'Add Task' : 'Update Task'}
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => setModalOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </form>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <h1>Do you really want to delete all Tasks? </h1>
+                <div className={styles.buttonContainer}>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    onClick={onDeleteClick}
+                  >
+                    Delete Tasks
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => setModalOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
               </div>
-            </form>
+            )}
           </motion.div>
         </motion.div>
       )}
