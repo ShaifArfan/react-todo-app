@@ -5,12 +5,30 @@
 	width: 100%;
 	margin: 0 auto;
 }
+.container {
+  background-color: var(--bg-2);
+  color: var(--black-2);
+  min-height: 100vh;
+  padding-top: 20px;
+}
+
+
+/* ⭐ SEARCH BAR (already added) */
+.searchInput {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
 .appHeader {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	height: 60px;
 }
+
 .content__wrapper {
 	background-color: var(--bg-2);
 	padding: 2rem;
@@ -19,8 +37,8 @@
 		padding: 1.5rem;
 	}
 }
+
 .emptyText {
-	// display: inline-block;
 	font-size: 1.6rem;
 	font-weight: 500;
 	color: var(--black-2);
@@ -31,4 +49,54 @@
 	background-color: var(--gray-2);
 	width: max-content;
 	height: auto;
+}
+
+/* ⭐⭐⭐ DARK MODE / LIGHT MODE THEME SUPPORT ⭐⭐⭐ */
+
+body[data-theme='light'] {
+  --bg-2: #ffffff;
+  --black-2: #222;
+  --gray-2: #e6e6e6;
+}
+
+body[data-theme='dark'] {
+  --bg-2: #1a1a1a;
+  --black-2: #f7f7f7;
+  --gray-2: #333;
+}
+
+/* Smooth theme transition */
+body {
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ⭐ THEME TOGGLE BUTTON */
+.themeToggleWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.themeToggleBtn {
+  padding: 8px 14px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+body[data-theme='light'] .themeToggleBtn {
+  background: #ddd;
+  color: #000;
+}
+/* Apply theme background + text to entire page */
+body[data-theme="light"] {
+  background-color: #ffffff;
+  color: #222;
+}
+
+body[data-theme="dark"] {
+  background-color: #0d0d0d;   /* full page dark */
+  color: #f7f7f7;
 }

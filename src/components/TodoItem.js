@@ -18,24 +18,38 @@ const child = {
   },
 };
 
+// ⭐ CATEGORY COLORS
+const categoryStyles = {
+  Work: { background: '#FFB86C', color: '#000' },
+  Personal: { background: '#8BE9FD', color: '#000' },
+  Shopping: { background: '#FF79C6', color: '#fff' },
+  Study: { background: '#50FA7B', color: '#000' },
+};
+
+// ⭐ PRIORITY COLORS
+const priorityStyles = {
+  high: { background: '#FF5555', color: '#fff' },
+  medium: { background: '#F1FA8C', color: '#000' },
+  low: { background: '#BD93F9', color: '#fff' },
+};
+
 function TodoItem({ todo }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
   useEffect(() => {
-    if (todo.status === 'complete') {
-      setChecked(true);
-    } else {
-      setChecked(false);
-    }
+    setChecked(todo.status === 'complete');
   }, [todo.status]);
 
   const handleCheck = () => {
-    setChecked(!checked);
     dispatch(
-      updateTodo({ ...todo, status: checked ? 'incomplete' : 'complete' })
+      updateTodo({
+        ...todo,
+        status: checked ? 'incomplete' : 'complete',
+      })
     );
+    setChecked(!checked);
   };
 
   const handleDelete = () => {
@@ -52,7 +66,9 @@ function TodoItem({ todo }) {
       <motion.div className={styles.item} variants={child}>
         <div className={styles.todoDetails}>
           <CheckButton checked={checked} handleCheck={handleCheck} />
+
           <div className={styles.texts}>
+            {/* TITLE */}
             <p
               className={getClasses([
                 styles.todoText,
@@ -61,25 +77,56 @@ function TodoItem({ todo }) {
             >
               {todo.title}
             </p>
+
+            {/* ⭐ PRIORITY BADGE */}
+            <span
+              style={{
+                padding: '2px 8px',
+                borderRadius: '12px',
+                fontSize: '12px',
+                marginTop: '4px',
+                width: 'fit-content',
+                ...priorityStyles[todo.priority],
+              }}
+            >
+              Priority: {todo.priority}
+            </span>
+
+            {/* ⭐ CATEGORY BADGE */}
+            <span
+              style={{
+                padding: '2px 8px',
+                borderRadius: '12px',
+                fontSize: '12px',
+                marginTop: '4px',
+                width: 'fit-content',
+                ...categoryStyles[todo.category],
+              }}
+            >
+              {todo.category}
+            </span>
+
             <p className={styles.time}>
               {format(new Date(todo.time), 'p, MM/dd/yyyy')}
             </p>
           </div>
         </div>
+
         <div className={styles.todoActions}>
           <div
             className={styles.icon}
-            onClick={() => handleDelete()}
-            onKeyDown={() => handleDelete()}
+            onClick={handleDelete}
+            onKeyDown={handleDelete}
             tabIndex={0}
             role="button"
           >
             <MdDelete />
           </div>
+
           <div
             className={styles.icon}
-            onClick={() => handleUpdate()}
-            onKeyDown={() => handleUpdate()}
+            onClick={handleUpdate}
+            onKeyDown={handleUpdate}
             tabIndex={0}
             role="button"
           >
@@ -87,6 +134,7 @@ function TodoItem({ todo }) {
           </div>
         </div>
       </motion.div>
+
       <TodoModal
         type="update"
         modalOpen={updateModalOpen}

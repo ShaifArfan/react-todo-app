@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from '../styles/modules/app.module.scss';
 import TodoItem from './TodoItem';
 
@@ -14,6 +14,7 @@ const container = {
     },
   },
 };
+
 const child = {
   hidden: { y: 20, opacity: 0 },
   visible: {
@@ -23,18 +24,36 @@ const child = {
 };
 
 function AppContent() {
+  const dispatch = useDispatch();
+
   const todoList = useSelector((state) => state.todo.todoList);
   const filterStatus = useSelector((state) => state.todo.filterStatus);
+  const filterCategory = useSelector((state) => state.todo.filterCategory);
+  const searchQuery = useSelector((state) => state.todo.searchQuery);
 
-  const sortedTodoList = [...todoList];
-  sortedTodoList.sort((a, b) => new Date(b.time) - new Date(a.time));
+  console.log(todoList);
 
-  const filteredTodoList = sortedTodoList.filter((item) => {
-    if (filterStatus === 'all') {
-      return true;
-    }
+  // Sort newest first
+  const sortedTodoList = [...todoList].sort(
+    (a, b) => new Date(b.time) - new Date(a.time)
+  );
+
+  // Filter by status
+  const statusFiltered = sortedTodoList.filter((item) => {
+    if (filterStatus === 'all') return true;
     return item.status === filterStatus;
   });
+
+  // Filter by category
+  const categoryFiltered = statusFiltered.filter((item) => {
+    if (filterCategory === 'All') return true;
+    return (item.category || 'Personal') === filterCategory;
+  });
+
+  // ⭐ Search filter
+  const fullyFiltered = categoryFiltered.filter((item) =>
+    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <motion.div
@@ -43,12 +62,37 @@ function AppContent() {
       initial="hidden"
       animate="visible"
     >
+      {/* CATEGORY FILTER */}
+      <div style={{ marginBottom: '15px' }}>
+        <label
+          htmlFor="categoryFilter"
+          style={{ marginRight: '10px', fontWeight: 'bold' }}
+        >
+          Category:
+        </label>
+
+        <select
+          id="categoryFilter"
+          value={filterCategory}
+          onChange={(e) =>
+            dispatch({
+              type: 'todo/setFilterCategory',
+              payload: e.target.value,
+            })
+          }
+        >
+          <option value="All">All</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Study">Study</option>
+        </select>
+      </div>
+
       <AnimatePresence>
-        {filteredTodoList && filteredTodoList.length > 0 ? (
-          filteredTodoList.map((todo) => (
-            // <motion.div key={todo.id} variants={child}>
+        {fullyFiltered.length > 0 ? (
+          fullyFiltered.map((todo) => (
             <TodoItem key={todo.id} todo={todo} />
-            // </motion.div>
           ))
         ) : (
           <motion.p variants={child} className={styles.emptyText}>

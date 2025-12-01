@@ -1,78 +1,100 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-const getInitialTodo = () => {
-  // getting todo list
-  const localTodoList = window.localStorage.getItem('todoList');
-  // if todo list is not empty
-  if (localTodoList) {
-    return JSON.parse(localTodoList);
-  }
-  window.localStorage.setItem('todoList', []);
-  return [];
+// ⭐ Load saved data from localStorage
+const savedTodos = JSON.parse(localStorage.getItem("todoList")) || [];
+const savedStatus = localStorage.getItem("filterStatus") || "all";
+const savedCategory = localStorage.getItem("filterCategory") || "All";
+const savedSearch = localStorage.getItem("searchQuery") || "";
+const savedDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
+
+const initialState = {
+  todoList: savedTodos,
+  filterStatus: savedStatus,
+  filterCategory: savedCategory,
+  searchQuery: savedSearch,
+  darkMode: savedDarkMode,      // ⭐ persists
 };
 
-const initialValue = {
-  filterStatus: 'all',
-  todoList: getInitialTodo(),
-};
-
-export const todoSlice = createSlice({
+const todoSlice = createSlice({
   name: 'todo',
-  initialState: initialValue,
+  initialState,
+
   reducers: {
-    addTodo: (state, action) => {
-      state.todoList.push(action.payload);
-      const todoList = window.localStorage.getItem('todoList');
-      if (todoList) {
-        const todoListArr = JSON.parse(todoList);
-        todoListArr.push({
-          ...action.payload,
-        });
-        window.localStorage.setItem('todoList', JSON.stringify(todoListArr));
-      } else {
-        window.localStorage.setItem(
-          'todoList',
-          JSON.stringify([
-            {
-              ...action.payload,
-            },
-          ])
-        );
+    addTodo: {
+      reducer(state, action) {
+        state.todoList.unshift(action.payload);
+        localStorage.setItem("todoList", JSON.stringify(state.todoList));
+      },
+
+      prepare(title, category = 'Personal', priority = 'medium') {
+        return {
+          payload: {
+            id: nanoid(),
+            title,
+            status: 'incomplete',
+            category,
+            priority,
+            time: new Date().toISOString(),
+          },
+        };
+      },
+    },
+
+    updateTodo(state, action) {
+      const index = state.todoList.findIndex(
+        (t) => t.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.todoList[index] = action.payload;
+        localStorage.setItem("todoList", JSON.stringify(state.todoList));
       }
     },
-    updateTodo: (state, action) => {
-      const todoList = window.localStorage.getItem('todoList');
-      if (todoList) {
-        const todoListArr = JSON.parse(todoList);
-        todoListArr.forEach((todo) => {
-          if (todo.id === action.payload.id) {
-            todo.status = action.payload.status;
-            todo.title = action.payload.title;
-          }
-        });
-        window.localStorage.setItem('todoList', JSON.stringify(todoListArr));
-        state.todoList = [...todoListArr];
-      }
+
+    deleteTodo(state, action) {
+      state.todoList = state.todoList.filter((t) => t.id !== action.payload);
+      localStorage.setItem("todoList", JSON.stringify(state.todoList));
     },
-    deleteTodo: (state, action) => {
-      const todoList = window.localStorage.getItem('todoList');
-      if (todoList) {
-        const todoListArr = JSON.parse(todoList);
-        todoListArr.forEach((todo, index) => {
-          if (todo.id === action.payload) {
-            todoListArr.splice(index, 1);
-          }
-        });
-        window.localStorage.setItem('todoList', JSON.stringify(todoListArr));
-        state.todoList = todoListArr;
+
+    toggleTodo(state, action) {
+      const todo = state.todoList.find((t) => t.id === action.payload);
+      if (todo) {
+        todo.status =
+          todo.status === 'incomplete' ? 'complete' : 'incomplete';
       }
+      localStorage.setItem("todoList", JSON.stringify(state.todoList));
     },
-    updateFilterStatus: (state, action) => {
+
+    setFilterStatus(state, action) {
       state.filterStatus = action.payload;
+      localStorage.setItem("filterStatus", action.payload);
+    },
+
+    setFilterCategory(state, action) {
+      state.filterCategory = action.payload;
+      localStorage.setItem("filterCategory", action.payload);
+    },
+
+    setSearchQuery(state, action) {
+      state.searchQuery = action.payload;
+      localStorage.setItem("searchQuery", action.payload);
+    },
+
+    toggleDarkMode(state) {
+      state.darkMode = !state.darkMode;
+      localStorage.setItem("darkMode", JSON.stringify(state.darkMode));
     },
   },
 });
 
-export const { addTodo, updateTodo, deleteTodo, updateFilterStatus } =
-  todoSlice.actions;
+export const {
+  addTodo,
+  updateTodo,
+  deleteTodo,
+  toggleTodo,
+  setFilterStatus,
+  setFilterCategory,
+  setSearchQuery,
+  toggleDarkMode,
+} = todoSlice.actions;
+
 export default todoSlice.reducer;
