@@ -29,3 +29,17 @@
 	background-color: var(--bg-3);
 	color: var(--black-1);
 }
+.button__themeToggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.8rem;
+	font-size: 2.2rem;
+	line-height: 0;
+	color: var(--black-1);
+	background-color: var(--bg-3);
+	transition: 0.3s ease background-color;
+	&:hover {
+		background-color: var(--gray-2);
+	}
+}

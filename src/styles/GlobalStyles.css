@@ -16,6 +16,23 @@
 	--gray-2: #dedfe1;
 	--black: black;
 	--white: white;
+	/* surfaces (cards, inputs) & the text drawn on top of them */
+	--surface-1: #ffffff;
+	--surface-text: #1a1a1a;
+}
+html[data-theme='dark'] {
+	--primaryPurple: #7b86ff;
+	--black-1: #e8e8f0;
+	--black-2: #c4c4d0;
+	--bg-1: #15151d;
+	--bg-2: #22222d;
+	--bg-3: #33333f;
+	--gray-1: #2d2d39;
+	--gray-2: #3a3a47;
+	--black: #fff;
+	--white: #fff;
+	--surface-1: #2b2b37;
+	--surface-text: #e8e8f0;
 }
 html {
 	font-size: 10px;
@@ -25,6 +42,7 @@ body {
 	width: 100%;
 	min-height: 100vh;
 	background-color: var(--bg-1);
+	transition: background-color 0.3s ease;
 }
 * {
 	font-family: 'Poppins', sans-serif;

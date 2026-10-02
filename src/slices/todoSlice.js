@@ -11,8 +11,19 @@ const getInitialTodo = () => {
   return [];
 };
 
+const getInitialTheme = () => {
+  // getting saved theme mode
+  const localTheme = window.localStorage.getItem('themeMode');
+  // only accept the values the app knows how to render
+  if (localTheme === 'light' || localTheme === 'dark') {
+    return localTheme;
+  }
+  return 'light';
+};
+
 const initialValue = {
   filterStatus: 'all',
+  themeMode: getInitialTheme(),
   todoList: getInitialTodo(),
 };
 
@@ -70,9 +81,18 @@ export const todoSlice = createSlice({
     updateFilterStatus: (state, action) => {
       state.filterStatus = action.payload;
     },
+    toggleTheme: (state) => {
+      state.themeMode = state.themeMode === 'dark' ? 'light' : 'dark';
+      window.localStorage.setItem('themeMode', state.themeMode);
+    },
   },
 });
 
-export const { addTodo, updateTodo, deleteTodo, updateFilterStatus } =
-  todoSlice.actions;
+export const {
+  addTodo,
+  updateTodo,
+  deleteTodo,
+  updateFilterStatus,
+  toggleTheme,
+} = todoSlice.actions;
 export default todoSlice.reducer;

@@ -10,6 +10,11 @@
 	align-items: center;
 	justify-content: space-between;
 	height: 60px;
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
 }
 .content__wrapper {
 	background-color: var(--bg-2);
